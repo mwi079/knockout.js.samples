@@ -1,15 +1,20 @@
 $(document).ready(function() {
-  var viewModel = 
-    { firstName: ko.observable("Bert")
-    , lastName: ko.observable("Laa")
-    , capitalizeLastName: function() {
-        var currentVal = this.lastName();        // Read the current value
-        this.lastName(currentVal.toUpperCase()); }
+  const viewModel = 
+    { 
+      firstName: ko.observable("Malcolm"), 
+      lastName: ko.observable("Wilkie"), 
+      capitalizeLastName: function() {
+        const currentVal = this.lastName();       
+        this.lastName(currentVal.toUpperCase()); 
+      },
+      removeCapsLastName: function() {
+        const currentVal=this.lastName();
+        this.lastName(currentVal.toLowerCase())
+      }
+      
     };
   
-  viewModel.fullName = ko.dependentObservable(function() {
-    return this.firstName() + " " + this.lastName();
-  }, viewModel);
+  viewModel.fullName = ko.computed(function(){return this.firstName() + " " + this.lastName()}, viewModel);
   
   // Activates knockout.js
   ko.applyBindings(viewModel);
