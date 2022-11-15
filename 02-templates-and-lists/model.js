@@ -7,15 +7,17 @@ $(document).ready(function() {
   ];
   
   // Class to represent a row in the reservations grid
-  const seatReservation = function(name) {
-      this.name = name;
-      this.availableMeals = availableMeals;
-      this.meal = ko.observable(availableMeals[0]);
-      this.remove = function() { viewModel.seats.remove(this) }
-      this.formattedPrice = ko.computed(function() {
-          let price = this.meal().price;
-          return price ? "$" + price.toFixed(2) : "None";        
-      }, this);
+    class seatReservation {
+        constructor(name){
+            this.name = name;
+            this.availableMeals = availableMeals;
+            this.meal = ko.observable(availableMeals[0]);
+            this.remove = function() { viewModel.seats.remove(this) }
+            this.formattedPrice = ko.computed(function() {
+                let price = this.meal().price;
+                return price ? "£" + price.toFixed(2) : "None";        
+            }, this);
+    }
   }
   
   // Overall viewmodel for this screen, along with initial state
