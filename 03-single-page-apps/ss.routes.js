@@ -1,5 +1,5 @@
 ko.link_observable_to_ss_route = function (v) {
-  var routes         = { '/:folder'        : { on: update_bindings }
+  const routes         = { '/:folder'        : { on: update_bindings }
                        , '/:folder/:email' : { on: update_bindings }
                        }
     , router         = Router(routes)

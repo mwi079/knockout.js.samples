@@ -1,4 +1,4 @@
-var all_labels =
+const all_labels =
  { "Inbox"   :
    [
        {
@@ -554,7 +554,7 @@ var all_labels =
  };
 
 $(document).ready(function(){
-  var viewModel = {
+  const viewModel = {
       // Data
       folders: ['Inbox', 'Archive', 'Sent', 'Spam'],
       currentPageMails: ko.observableArray([]),
@@ -569,12 +569,12 @@ $(document).ready(function(){
       }   
   };
   
-  ko.dependentObservable(function() {
+  ko.computed(function() {
       this.currentPageMails(all_labels[this.selectedFolder()]);
   }, viewModel);
   
-  viewModel.selectedMail = ko.dependentObservable(function() {
-      var mailIdToFind = this.selectedMailId();
+  viewModel.selectedMail = ko.computed(function() {
+      const mailIdToFind = this.selectedMailId();
       return ko.utils.arrayFirst(viewModel.currentPageMails(), function(item) { return item.id == mailIdToFind; });   
   }, viewModel);
   
